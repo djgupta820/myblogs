@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="shortcut icon" href="../static/logo.png" type="image/x-icon">
+    <title>MyBlogs</title>
+</head>
+<body class="land">
+    <h1 class="top"></h1>
+    <marquee direction="right" scrollamount="100"> <p class="marp"> </p> </marquee>
+    <marquee scrollamount="100"> <p class="marp"> </p> </marquee>
+    
+    <div class="content">
+        <div style="display: flex;">
+            <div class="land-img">
+                <figure>
+                    <img src="../static/image (1).png" alt="landing image"><br>
+                    <figcaption><h3>MyBlogs</h3></figcaption>
+                </figure>
+            </div>
+        
+            <div class="text">
+                <p>welcome to</p>
+                <strong>MyBlogs</strong>
+                <p>please choose the appropriate option...</p>
+                <div style="display: flex;">
+                    <a href="{{url_for('login')}}" class="btn btn-outline-primary btn-lg">Login</a>
+                    <a href="{{url_for('register')}}" class="btn btn-outline-primary btn-lg">Register</a>
+                    <a href="{{url_for('index')}}" class="btn btn-outline-primary btn-lg">Go Anonymous</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

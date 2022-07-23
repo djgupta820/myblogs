@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Add New Post</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h3>Add New Post</h3>
+        <div>
+            <form action="{{url_for('addPost')}}" method="post">
+                <div class="form-group">
+                    <label for="title">Post Title</label>
+                    <input class="form-control" type="text" name="title" placeholder="Post Title">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="content">Post Content</label>
+                    <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="8"></textarea>
+                </div>
+                <br>
+                <div style="display: flex;">
+                    <input type="submit" value=" Post " class="btn btn-outline-primary">
+                    <a href="{{url_for('index')}}" class="btn btn-outline-primary" style="margin-left:50px;"> Cancel </a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

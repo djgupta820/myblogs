@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="shortcut icon" href="../static/logo.png" type="image/x-icon">
+    
+    <!-- got google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+    
+    <script src="../static/script.js"></script>
+    </script>
+    {% block title %}
+    <title> {{title}} </title> 
+    {% endblock %}
+  </head>
+<body>
+  {% if session.get('user_name') %}
+    <div id="main" onload="welcome();"></div>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{{url_for('myblogs')}}">MyBlogs</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href=" {{url_for('index')}} ">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href=" {{url_for('add_post')}} ">Add Post</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href=" {{url_for('logout')}} ">Logout</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href=" {{url_for('profile')}} ">Profile ({{session['user_name']}})</a>
+              </li>
+              <!-- 
+              <li class="form-control">
+                <img src="../static/profile-user.png" alt="profile" class="profile-img"> <span style="margin-right:30px;">Username</span>
+              </li> -->
+            </ul>
+
+            <form class="d-flex" role="search" method="post" action=" {{url_for('search')}} ">
+              <input class="form-control me-2" name="query" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+    </nav>
+  {% else %}
+    
+    <!-------------------------------------------- for not logged in users ------------------------->
+    
+    <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{{url_for('index')}}">MyBlogs</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{url_for('login')}}">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{url_for('register')}}">Register</a>
+              </li>
+              </ul>
+              <form class="d-flex" role="search" method="post" action=" {{url_for('search')}} ">
+                <input class="form-control me-2" name="query" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+          </div>
+        </div>
+    </nav>
+  {% endif %}
+
+    {% block content %}
+    {% endblock %}
+    <p style="margin-top:10px;"></p>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

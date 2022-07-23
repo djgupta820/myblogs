@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h3>Edit Post</h3>
+        {% if result %}
+            <div>
+                <form action="{{url_for('editPost')}}" method="post">
+                    <div class="form-group">
+                        <label for="post_id">Post ID</label>
+                        <input class="form-control" type="text" value="{{result[0]}}" name="post_id" hidden>
+                        <input class="form-control" type="text" value="{{result[0]}}" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="last_updated">Last Updated</label>
+                        <input class="form-control" type="text" value="{{result[4]}}" name="last_updated" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Post Title</label>
+                        <input class="form-control" type="text" value="{{result[2]}}" name="title" placeholder="Post Title">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="content">Post Content</label>
+                        <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="8">{{result[3]}}</textarea>
+                    </div>
+                    <br>
+                    <div style="display:flex;">
+                        <input type="submit" value=" Update " class="btn btn-primary">
+                        <a href="{{url_for('myblogs')}}" class="btn btn-outline-primary" style="margin-left:50px;"> Cancel </a>
+                    </div>
+                </form>
+            </div>
+        {% else %}
+            <div class="alert alert-danger">
+                <p>Error occured...</p>
+                <p>Please try after some time.</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

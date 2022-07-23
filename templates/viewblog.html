@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>View Blog</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="card" style="margin-top:1rem;">
+        <h5 class="card-header"> 
+            <a style="text-decoration:none;">
+                <img src="../static/profile-user.png" alt="profile_picture" class="img-class"> {{result[1]}} 
+            </a> 
+            <small class="date"> <i>last updated: {{result[4]}} </i> <div id="post-id"> <b>Post ID</b> ( {{result[0]}} )</div></small>
+        </h5>
+        <div class="card-body">
+        <h5 class="card-title"> {{result[2]}} </h5>
+        <p class="card-text"> {{result[3]}} </p>
+        </div>
+    </div>
+    <a href="{{url_for('index')}}" class="btn btn-outline-primary" style="margin-top: 30px;"> Back </a>
+</div>
+
+{% endblock %}

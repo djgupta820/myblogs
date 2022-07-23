@@ -1,0 +1,91 @@
+body{
+    background-color: #E5E8E8;
+}
+.shadow{
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+.img-class{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.img-class:hover{
+    filter: drop-shadow(0 0 3px #121212);
+    transition: filter .3s;
+}
+.date{
+    float: right;
+    align-items: center;
+    font-size: 15px;
+    align-content: center;
+    color: rgb(50, 50, 238);
+}
+
+.profile-img{
+    height: 30px;
+    width: 30px;
+    align-content: center;
+    margin-right: 15px;
+}
+.top{
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: #1b1717;
+    height: 60px;
+    opacity: .9;
+}
+.marp{
+    width:60%;
+    background-color: orange;
+    height: 10px;
+}
+.land{
+    background-color: rgb(166, 161, 238);
+}
+.land-img{
+    margin-left: 6rem;
+    padding: 2rem;
+}
+.land-img img{
+    height: 300px;
+    width: 300px;
+    transition: transform .4s;
+}
+.land-img img:hover{
+    filter: drop-shadow(0 0 20px #121212);
+    transform: scale(1.7);
+    /* transition: height 1s; */
+}
+figure{
+    text-align: center;
+}
+figcaption{
+    margin-top: 20px;
+}
+.text{
+    padding: 1rem;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 50px;
+}
+.text p,strong{
+    color: rgb(202, 63, 13);
+}
+.text a{
+    margin-left: 150px;
+    margin-top: 20px;
+}
+.cp{
+    /* max-width: 500px;*/
+    width: 50%;
+    margin: auto;
+    margin-top: 20px; 
+}
+.confirm-box{
+    margin-left:100px; 
+    /* border: 1px solid gray;  */
+    border-radius: 8px;
+    padding: 1rem;
+}

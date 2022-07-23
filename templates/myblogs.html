@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>My Blogs</title>
+{% endblock %}
+
+{% block script %}
+    
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h3>My Blogs</h3>
+        {% if results %}
+        <h6> <font color="blue"> <i> Total Blogs: {{tp[0]}} </i> </font> </h6>
+        {% for result in results %}
+        <!-- {{loop.index}} -->
+            <div class="card shadow" style="margin-top:1rem;">
+                <h5 class="card-header"> 
+                    <a href="{{url_for('profile')}}" style="text-decoration:none;">
+                        <img src="../static/profile-user.png" alt="profile_picture" class="img-class"> {{result[1]}} 
+                    </a> 
+                    <small class="date"> <i>last updated: {{result[4]}}</i> <div id="post-id">( {{result[0]}} )</div></small>
+                </h5>
+                <div class="card-body">
+                <h5 class="card-title">{{result[2]}}</h5>
+                <p class="card-text"> {{result[3]}} </p>
+                <div style="display: flex;">
+                    <form action="{{url_for('viewblog')}}" method="post">
+                        <input type="text" name="post_id" id="post_id" value="{{result[0]}}" hidden>
+                        <input type="submit" value=" View " class="btn btn-outline-primary">
+                    </form>
+                    <form action="{{url_for('edit_post')}}" method="post" style="margin-left:50px;">
+                        <input type="text" name="post_id" id="post_id" value="{{result[0]}}" hidden>
+                        <input type="submit" value=" Edit " class="btn btn-outline-primary">
+                    </form>
+                    <script>
+                        function create(id){
+                            const para = document.createElement('p');                       //create paragraph
+                            const btnOk = document.createElement('input');                  //create ok button
+                            const inputId = document.createElement('input');                //create input for post id
+                            const btnC = document.createElement('input');                   //create cancel button
+                            const form = document.createElement('form')                     //create form
+                            
+                            para.setAttribute('id', 'para');
+                            para.setAttribute('style', 'margin-top:15px;');
+                            para.innerText = "Please confirm to delete the post.";            
+
+                            form.setAttribute('id', 'confirm_form')
+                            form.setAttribute('action', "{{url_for('delete_post')}}");
+                            form.setAttribute('method', "POST");
+
+                            inputId.setAttribute('type', 'hidden');
+                            inputId.setAttribute('name', 'post_id');
+                            inputId.setAttribute('value', '{{result[0]}}');
+
+                            btnOk.setAttribute('type', 'submit');                           
+                            btnOk.setAttribute('value', 'OK');
+                            btnOk.setAttribute('class', 'btn btn-success');
+
+                            btnC.setAttribute('type', 'button');
+                            btnC.setAttribute('value', 'Cancel');
+                            btnC.setAttribute('class', 'btn btn-danger');
+                            btnC.setAttribute('style', 'margin-left:50px;');
+                            btnC.setAttribute('onclick', 'remove();');
+
+                            
+                            document.getElementById(id).appendChild(para);
+                            document.getElementById(id).appendChild(form);
+                            form.appendChild(inputId);
+                            form.appendChild(btnOk);
+                            form.appendChild(btnC);
+                        }
+
+                        function remove(){
+                            document.getElementById('para').remove();
+                            document.getElementById('confirm_form').remove();
+                        }
+                    </script>
+                    <input type="button" value=" Delete " class="btn btn-outline-danger" style="margin-left:50px;" onclick="create('confirm{{loop.index}}');">
+                </div>
+                <div id="confirm{{loop.index}}" class="confirm-box"></div>
+                </div>
+            </div>
+        {% endfor %}
+        {% else %}
+        <div class="alert alert-danger">
+            <p>Oops... No blogs!</p>
+            <p>It seems like you have not posted any blog yet</p>
+        </div>
+        <br>
+        <p>click <a href="{{url_for('add_post')}}">here</a> to post your first blog</p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Search Results</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h3>Search Results</h3>
+        {% if results %}
+        {% for result in results %}
+        <div class="card shadow" style="margin-top:1rem;">
+            <h5 class="card-header"> 
+                <a style="text-decoration:none;">
+                    <img src="../static/profile-user.png" alt="profile_picture" class="img-class"> {{result[1]}}
+                </a> 
+                <small class="date"> <i>last updated: {{result[4]}}</i> <div id="post-id">( {{result[0]}} )</div></small>
+            </h5>
+            <div class="card-body">
+            <h5 class="card-title"> {{result[2]}} </h5>
+            <p class="card-text"> {{result[3]}} </p>
+            <form action="http://localhost:5000/viewblog" method="post">
+                <input type="text" name="post_id" id="post_id" value="{{result[0]}}" hidden>
+                <input type="submit" value=" View " class="btn btn-outline-primary">
+            </form>
+            </div>
+        </div>
+        {% endfor %}
+        <br> <br> <a href="{{url_for('index')}}" class="btn btn-outline-primary"> Back </a>
+
+        {% else %}
+        <div class="alert alert-danger">
+            <p>No result Found</p>
+        </div>
+
+        {% endif %}
+    </div>
+{% endblock %}
